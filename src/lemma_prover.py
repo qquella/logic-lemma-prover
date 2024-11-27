@@ -1,20 +1,41 @@
-from src.constants import PRETRAIN_MESSAGE
+import openai
+from openai import OpenAIError, AuthenticationError
+from src.config import OPENAI_API_KEY
+from src.constants import PRETRAIN_MESSAGE, MODEL_MAP
 
 
-def generate_proof(lemma, model="gpt-4"):
-    """
-    Generates a proof for the given lemma using a specified GPT model.
-    Includes the pretraining message to ensure consistent context.
-    """
+def generate_proof(lemma, model="gpt-4o", api_key=None):
+    if not api_key:
+        raise ValueError("OpenAI API key is required.")
+
+    client = openai.OpenAI(api_key=api_key)
+
     try:
         model_name = select_model(model)
-        full_prompt = (
-            f"{PRETRAIN_MESSAGE}\n\nUse the examples above to prove the given below: "
+        messages = [
+            # {"role": "assistant", "content": PRETRAIN_MESSAGE},
+            # {"role": "user", "content": lemma},
+            {
+                "role": "user",
+                "content": f"{PRETRAIN_MESSAGE}\n\nuse the example above to prove the following: {lemma}",
+            }
+        ]
+
+        response = client.chat.completions.create(
+            model=model_name,
+            messages=messages,
+            max_tokens=512,
         )
 
-        response = openai.Completion.create(
-            engine=model_name, prompt=full_prompt, max_tokens=1500
-        )
-        return response.choices[0].text.strip()
+        return response.choices[0].message.content.strip()
+
+    except AuthenticationError as e:
+        return f"Error: Invalid API Key. {str(e)}"
+    except OpenAIError as e:
+        return f"Error connecting to OpenAI API: {str(e)}"
     except Exception as e:
         return f"Error generating proof: {str(e)}"
+
+
+def select_model(model):
+    return MODEL_MAP.get(model, "gpt-4o")

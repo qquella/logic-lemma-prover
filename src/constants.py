@@ -1,7 +1,7 @@
 # Constants for model mapping and preamble
 MODEL_MAP = {
-    "gpt-4": "text-davinci-003",
-    "gpt-3.5": "text-curie-001",
+    "gpt-4o": "gpt-4o",
+    "gpt-3.5": "gpt-3.5-turbo",
     "o1-preview": "o1-preview",
 }
 
@@ -1427,4 +1427,4 @@ QED
 QED
 """
 
-PREAMBLE = "XXXXX\n\nProvide detailed and accurate reasoning for the following:"
+# PREAMBLE = "\n\nProvide detailed and accurate reasoning for the following:"
