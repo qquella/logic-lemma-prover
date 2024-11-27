@@ -70,7 +70,7 @@ cd logic-lemma-prover
 
 1. Navigate to the `frontend` folder:
    ```bash
-   cd frontend
+   cd logic-lemma-ui
    ```
 
 2. Install Node.js dependencies:
