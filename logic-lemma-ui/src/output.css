@@ -593,6 +593,12 @@ video {
   justify-content: space-between;
 }
 
+.space-x-4 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 0;
+  margin-right: calc(1rem * var(--tw-space-x-reverse));
+  margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
+}
+
 .overflow-auto {
   overflow: auto;
 }
@@ -661,6 +667,11 @@ video {
 .bg-hot_pink-500 {
   --tw-bg-opacity: 1;
   background-color: rgb(245 100 169 / var(--tw-bg-opacity, 1));
+}
+
+.bg-gray-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(243 244 246 / var(--tw-bg-opacity, 1));
 }
 
 .p-1 {
@@ -742,6 +753,15 @@ video {
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
 }
 
+.text-hot_pink-500 {
+  --tw-text-opacity: 1;
+  color: rgb(245 100 169 / var(--tw-text-opacity, 1));
+}
+
+.underline {
+  text-decoration-line: underline;
+}
+
 .shadow-md {
   --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
@@ -784,6 +804,16 @@ code {
 .hover\:bg-steel_blue-700:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(27 79 111 / var(--tw-bg-opacity, 1));
+}
+
+.hover\:bg-hot_pink-700:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(196 12 101 / var(--tw-bg-opacity, 1));
+}
+
+.hover\:text-hot_pink-700:hover {
+  --tw-text-opacity: 1;
+  color: rgb(196 12 101 / var(--tw-text-opacity, 1));
 }
 
 .focus\:outline-none:focus {
