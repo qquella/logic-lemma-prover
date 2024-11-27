@@ -21,7 +21,7 @@ The Logic Lemma Prover is a web-based application that allows users to submit lo
 4. [Deployment](#deployment)
     - [Backend Deployment](#backend-deployment)
     - [Frontend Deployment](#frontend-deployment)
-5. [Customization](#customization)
+5. [Tailwind](#Tailwind)
 6. [Contributing](#contributing)
 7. [License](#license)
 
@@ -156,7 +156,7 @@ server {
 
 ---
 
-## Customization
+## Tailwind
 
 ### Tailwind Color Theme
 
