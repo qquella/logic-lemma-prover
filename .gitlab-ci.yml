@@ -1,0 +1,7 @@
+release:
+  image: node:18
+  script:
+    - npm ci
+    - npx semantic-release
+  only:
+    - main
