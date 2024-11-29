@@ -4,6 +4,10 @@ The Logic Lemma Prover is a web-based application that allows users to submit lo
 
 The app supports both light and dark modes for improved accessibility and offers seamless integration of LaTeX formatting for mathematical expressions.
 
+## Website 
+See the deployed version of the app on
+https://www.qlogicprover.com/
+
 ## Features
 
 - Submit logical lemmas for automated proof generation.
