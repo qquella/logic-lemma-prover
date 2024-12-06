@@ -8,6 +8,10 @@ The app supports both light and dark modes for improved accessibility and offers
 See the deployed version of the app on
 https://www.qlogicprover.com/
 
+### Sample UI
+<img width="1512" alt="llp-ex" src="https://github.com/user-attachments/assets/efe04c29-917c-42a3-b4ed-3c7dc1b38017">
+
+
 ## Features
 
 - Submit logical lemmas for automated proof generation.
