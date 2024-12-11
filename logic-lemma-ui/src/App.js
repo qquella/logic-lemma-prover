@@ -4,6 +4,8 @@ import Header from "./components/Header";
 import HelpSection from "./components/HelpSection";
 import InputForm from "./components/InputForm";
 import ResponseBox from "./components/ResponseBox";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 function App() {
   const [lemma, setLemma] = useState("");
@@ -55,6 +57,8 @@ function App() {
         darkMode={darkMode}
       />
       <ResponseBox response={response} darkMode={darkMode} />
+      <Analytics />
+      <SpeedInsights />
     </div>
   );
 }

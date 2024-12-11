@@ -24,7 +24,7 @@ def generate_proof(lemma, model="gpt-4o", api_key=None):
         response = client.chat.completions.create(
             model=model_name,
             messages=messages,
-            max_tokens=512,
+            max_tokens=4096,
         )
 
         return response.choices[0].message.content.strip()

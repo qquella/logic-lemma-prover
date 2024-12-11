@@ -59,3 +59,10 @@ if __name__ == "__main__":
 @app.route("/submit", methods=["POST"])
 def submit():
     return "Data submitted!"
+
+
+def handler(event, context):
+    from mangum import Mangum
+
+    asgi_handler = Mangum(app)
+    return asgi_handler(event, context)
