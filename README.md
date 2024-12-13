@@ -35,10 +35,11 @@ The Logic Lemma Prover is a web-based application that allows users to submit lo
 Here is the UI of the application, which is divided into the followings: 
 
 - Lemma Prover
-- Lemma Transcription
+
 <img width="1512" alt="logic-lemma" src="https://github.com/user-attachments/assets/7a6a568b-0474-4670-be46-223c56739af1" />
 
 
+- Lemma Transcription
 <img width="1512" alt="transcrip-scheme" src="https://github.com/user-attachments/assets/71577f46-a5ac-437a-95ad-0af146292ca9" />
 
 ---
