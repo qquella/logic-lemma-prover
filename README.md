@@ -38,7 +38,7 @@ Here is the UI of the application, which is divided into the followings:
 
 <img width="1512" alt="logic-lemma" src="https://github.com/user-attachments/assets/7a6a568b-0474-4670-be46-223c56739af1" />
 
-\
+&nbsp;
 
 - Lemma Transcription
 
