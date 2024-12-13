@@ -1,64 +1,60 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./styles/index.css";
 import Header from "./components/Header";
 import HelpSection from "./components/HelpSection";
-import InputForm from "./components/InputForm";
-import ResponseBox from "./components/ResponseBox";
-import { Analytics } from "@vercel/analytics/react";
-import { SpeedInsights } from "@vercel/speed-insights/next";
+import Sidebar from "./components/Sidebar";
+import ProveLemmaPage from "./components/ProveLemmaPage";
+import TranscribeSchemePage from "./components/TranscribeSchemePage";
+// import { Analytics } from "@vercel/analytics/react";
+// import { SpeedInsights } from "@vercel/speed-insights/next";
 
 function App() {
-  const [lemma, setLemma] = useState("");
-  const [response, setResponse] = useState("");
-  const [loading, setLoading] = useState(false);
   const [darkMode, setDarkMode] = useState(true);
   const [showEmail, setShowEmail] = useState(false);
+  const [page, setPage] = useState("prove-lemma");
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    setLoading(true);
-    setResponse("");
-
-    try {
-      const res = await fetch("http://localhost:5001/prove", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          lemma: lemma,
-          model: "gpt-4o",
-          preamble: "(definec ...) ...", // Add your custom preamble here
-        }),
-      });
-      const data = await res.json();
-      setResponse(data.proof || "Proof generated successfully!");
-    } catch (err) {
-      setResponse(`Error: ${err.message}`);
+  // Load the page from localStorage on mount
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      // Ensure code only runs client-side
+      const savedPage = localStorage.getItem("currentPage");
+      console.log("Loaded page from storage:", savedPage);
+      if (savedPage) {
+        setPage(savedPage);
+      }
     }
-    setLoading(false);
-  };
+  }, []);
+
+  // Save the current page to localStorage whenever it changes
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      console.log("Saving page to storage:", page);
+      localStorage.setItem("currentPage", page);
+    }
+  }, [page]);
 
   return (
     <div
-      className={`min-h-screen ${
+      className={`min-h-screen flex ${
         darkMode ? "bg-jet-500 text-steel_blue-100" : "bg-white text-black"
-      } p-6`}
+      }`}
     >
-      <Header
-        darkMode={darkMode}
-        setDarkMode={setDarkMode}
-        setShowEmail={setShowEmail}
-      />
-      {showEmail && <HelpSection darkMode={darkMode} />}
-      <InputForm
-        lemma={lemma}
-        setLemma={setLemma}
-        handleSubmit={handleSubmit}
-        loading={loading}
-        darkMode={darkMode}
-      />
-      <ResponseBox response={response} darkMode={darkMode} />
-      <Analytics />
-      <SpeedInsights />
+      <Sidebar page={page} setPage={setPage} darkMode={darkMode} />
+      <div className="flex-1 p-6">
+        <Header
+          darkMode={darkMode}
+          setDarkMode={setDarkMode}
+          setShowEmail={setShowEmail}
+        />
+        {showEmail && <HelpSection darkMode={darkMode} />}
+
+        {page === "prove-lemma" && <ProveLemmaPage darkMode={darkMode} />}
+        {page === "transcribe-scheme" && (
+          <TranscribeSchemePage darkMode={darkMode} />
+        )}
+      </div>
+      {/* <Analytics /> */}
+      {/* <SpeedInsights /> */}
     </div>
   );
 }
