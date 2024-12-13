@@ -24,7 +24,7 @@ const HelpSection = ({ darkMode }) => {
         rel="noopener noreferrer"
         className="underline text-hot_pink-500 hover:text-hot_pink-700"
       >
-        checker.atwalter.com
+        http://checker.atwalter.com
       </a>
     </div>
   );
