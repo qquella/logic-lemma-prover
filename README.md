@@ -9,7 +9,9 @@ The Logic Lemma Prover is a web-based application that allows users to submit lo
 - Dark and light modes with customizable color themes.
 - Real-time rendering of LaTeX mathematical expressions.
 - Backend powered by a fine-tuned ML model hosted on a Flask API.
-- Fully containerized for easy deployment using Docker.
+- Proof Automation: Automatically generates proofs for logical lemmas based on a fine-tuned LLM model.
+- Intuitive UI: An elegant, responsive user interface to input logical lemmas and retrieve proofs.
+- Responsive Design: Optimized for both desktop and mobile devices.
 
 ---
 
@@ -35,7 +37,6 @@ Before running the application, ensure you have the following installed:
 - Python (v3.9 or later)
 - Docker
 - A modern web browser (Chrome, Firefox, etc.)
-- An API key for the fine-tuned ML model (set as an environment variable `OPENAI_API_KEY`).
 
 ---
 
@@ -51,9 +52,6 @@ cd logic-lemma-prover
 ### Backend Setup
 
 1. Create a `.env` file in the root directory:
-   ```bash
-   OPENAI_API_KEY=your_api_key_here
-   ```
 
 2. Install Python dependencies:
    ```bash
@@ -65,6 +63,25 @@ cd logic-lemma-prover
    python app.py
    ```
    The backend will be available at `http://localhost:5001`.
+
+4. The project has been updated to use Vercel Next.js
+### Frontend Deployment (Vercel)
+
+1. Build the React app for production:
+   ```bash
+   npm run build
+   ```
+
+2. Deploy the project to [Vercel](https://vercel.com/):
+   - Connect your GitHub repository to Vercel.
+   - Ensure environment variables (e.g., `LLM_API_KEY`) are configured in the Vercel dashboard.
+
+3. Update the API base URL in the React app configuration to point to the deployed backend:
+   ```javascript
+   axios.post("https://<your-backend-domain>/prove", { ... });
+   ```
+
+The frontend is now deployed using Vercel, providing seamless access to the application.
 
 ### Frontend Setup
 
@@ -234,4 +251,6 @@ We welcome contributions! Please follow these steps:
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+
 
