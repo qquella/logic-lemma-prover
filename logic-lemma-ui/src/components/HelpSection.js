@@ -16,6 +16,16 @@ const HelpSection = ({ darkMode }) => {
       >
         support@logiclemmaprover.com
       </a>
+      <br></br>
+      Otherwise, check out Prover Checker at:{" "}
+      <a
+        href="http://checker.atwalter.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="underline text-hot_pink-500 hover:text-hot_pink-700"
+      >
+        http://checker.atwalter.com
+      </a>
     </div>
   );
 };
