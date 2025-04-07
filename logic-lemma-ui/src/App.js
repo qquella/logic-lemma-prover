@@ -4,8 +4,8 @@ import Header from "./components/Header";
 import HelpSection from "./components/HelpSection";
 import InputForm from "./components/InputForm";
 import ResponseBox from "./components/ResponseBox";
-import { Analytics } from "@vercel/analytics/react";
-import { SpeedInsights } from "@vercel/speed-insights/next";
+// import { Analytics } from "@vercel/analytics/react";
+// import { SpeedInsights } from "@vercel/speed-insights/next";
 
 function App() {
   const [lemma, setLemma] = useState("");
@@ -20,7 +20,7 @@ function App() {
     setResponse("");
 
     try {
-      const res = await fetch("http://localhost:5001/prove", {
+      const res = await fetch("/prove", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -57,8 +57,6 @@ function App() {
         darkMode={darkMode}
       />
       <ResponseBox response={response} darkMode={darkMode} />
-      <Analytics />
-      <SpeedInsights />
     </div>
   );
 }
