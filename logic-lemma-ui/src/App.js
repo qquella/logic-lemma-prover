@@ -35,14 +35,10 @@ function App() {
       localStorage.setItem("currentPage", page);
 
     try {
-      const res = await fetch("/prove", {
+        const res = await fetch("/prove", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          lemma: lemma,
-          model: "gpt-4o",
-          preamble: "(definec ...) ...", // Add your custom preamble here
-        }),
+        body: JSON.stringify({ lemma, model: "gpt-4o", preamble: "(definec ...) ..." }),
       });
       const data = await res.json();
       setResponse(data.proof || "Proof generated successfully!");
