@@ -1,4 +1,23 @@
 {
-  "builds": [{ "src": "app.py", "use": "@vercel/python" }],
-  "routes": [{ "src": "/prove", "dest": "app.py" }]
+  "version": 2,
+  "builds": [
+    {
+      "src": "logic-lemma-ui/package.json",
+      "use": "@vercel/next"
+    },
+    {
+      "src": "app.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/prove",
+      "dest": "/app.py"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/logic-lemma-ui/$1"
+    }
+  ]
 }
