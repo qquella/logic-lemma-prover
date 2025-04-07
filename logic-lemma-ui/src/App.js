@@ -2,9 +2,11 @@ import React, { useState, useEffect } from "react";
 import "./styles/index.css";
 import Header from "./components/Header";
 import HelpSection from "./components/HelpSection";
+
 import Sidebar from "./components/Sidebar";
 import ProveLemmaPage from "./components/ProveLemmaPage";
 import TranscribeSchemePage from "./components/TranscribeSchemePage";
+
 // import { Analytics } from "@vercel/analytics/react";
 // import { SpeedInsights } from "@vercel/speed-insights/next";
 
@@ -25,11 +27,28 @@ function App() {
     }
   }, []);
 
+
   // Save the current page to localStorage whenever it changes
   useEffect(() => {
     if (typeof window !== "undefined") {
       console.log("Saving page to storage:", page);
       localStorage.setItem("currentPage", page);
+
+    try {
+      const res = await fetch("/prove", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          lemma: lemma,
+          model: "gpt-4o",
+          preamble: "(definec ...) ...", // Add your custom preamble here
+        }),
+      });
+      const data = await res.json();
+      setResponse(data.proof || "Proof generated successfully!");
+    } catch (err) {
+      setResponse(`Error: ${err.message}`);
+
     }
   }, [page]);
 
@@ -39,6 +58,7 @@ function App() {
         darkMode ? "bg-jet-500 text-steel_blue-100" : "bg-white text-black"
       }`}
     >
+
       <Sidebar page={page} setPage={setPage} darkMode={darkMode} />
       <div className="flex-1 p-6">
         <Header
@@ -55,6 +75,7 @@ function App() {
       </div>
       {/* <Analytics /> */}
       {/* <SpeedInsights /> */}
+
     </div>
   );
 }
